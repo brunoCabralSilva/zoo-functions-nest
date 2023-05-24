@@ -1,5 +1,14 @@
-import { Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { AnimalsService } from './animals.service';
+import { DataAnimal } from './animals.dto';
 
 @Controller('animals')
 export class AnimalsController {
@@ -10,18 +19,18 @@ export class AnimalsController {
     return await this.animalsService.getAnimals();
   }
 
-  @Post('insert')
-  async insertAnimal() {
-    return this.animalsService.insertAnimal();
+  @Post()
+  async insertAnimal(@Body() body: DataAnimal) {
+    return this.animalsService.insertAnimal(body);
   }
 
-  @Patch('update')
-  async updateAnimal() {
+  @Patch()
+  async updateAnimal(@Body() body: DataAnimal, @Param('id') id: string) {
     return this.animalsService.updateAnimal();
   }
 
-  @Delete('remove')
-  async removeAnimal() {
+  @Delete()
+  async removeAnimal(@Body() body: DataAnimal, @Param('id') id: string) {
     return this.animalsService.removeAnimal();
   }
 }

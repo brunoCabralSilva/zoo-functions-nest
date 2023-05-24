@@ -16,9 +16,9 @@ export class SpeciesService {
   }
 
   async insertSpecie(body: DataSpecie) {
-    const { scientificName, popularName, alimentation } = body;
+    const { scientificName } = body;
     const query = await this.speciesRepository.find({
-      where: { scientificName, popularName, alimentation },
+      where: { scientificName },
     });
 
     if (query.length !== 0) {

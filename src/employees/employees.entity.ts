@@ -19,6 +19,8 @@ export class Employees {
   cpf: string;
 
   @JoinTable()
-  @ManyToMany(() => Sector, (sector: Sector) => sector.employees)
+  @ManyToMany(() => Sector, (sector: Sector) => sector.employees, {
+    cascade: true,
+  })
   sector: Sector[];
 }

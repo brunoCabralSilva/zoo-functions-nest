@@ -20,10 +20,14 @@ export class Animals {
   age: number;
 
   @JoinTable()
-  @ManyToOne(() => Species, (species) => species.animals)
+  @ManyToOne(() => Species, (species) => species.animals, {
+    cascade: true,
+  })
   specie: Species;
 
   @JoinTable()
-  @ManyToOne(() => Sector, (sector) => sector.animals)
+  @ManyToOne(() => Sector, (sector) => sector.animals, {
+    cascade: true,
+  })
   sector: Sector;
 }
